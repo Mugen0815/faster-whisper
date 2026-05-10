@@ -8,6 +8,6 @@ if [ -z "$INPUT" ] || [ ! -f "$INPUT" ]; then
   exit 1
 fi
 
-curl -s -X POST http://alpha:10300/transcribe \
+curl -s -X POST http://localhost:10300/transcribe \
   -F "file=@${INPUT}" \
 | sed -n 's/.*"text"[[:space:]]*:[[:space:]]*"\(.*\)".*/\1/p'
