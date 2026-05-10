@@ -1,0 +1,21 @@
+services:
+  whisper-api:
+    build: .
+    container_name: whisper-api
+    ports:
+      - "10300:8000"
+    environment:
+      - WHISPER_MODEL=large-v3
+      - WHISPER_DEVICE=cuda
+      - WHISPER_COMPUTE_TYPE=float16
+    volumes:
+      - ./models:/models
+      - ./tmp:/tmp/audio
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]

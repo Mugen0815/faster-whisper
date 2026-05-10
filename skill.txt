@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+INPUT="${1:-}"
+
+if [ -z "$INPUT" ] || [ ! -f "$INPUT" ]; then
+  echo "Missing input file" >&2
+  exit 1
+fi
+
+curl -s -X POST http://alpha:10300/transcribe \
+  -F "file=@${INPUT}" \
+| sed -n 's/.*"text"[[:space:]]*:[[:space:]]*"\(.*\)".*/\1/p'
