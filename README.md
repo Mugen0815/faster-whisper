@@ -155,22 +155,6 @@ Open a shell inside the container:
 docker exec -it whisper-api sh
 ```
 
-## Suggested `.gitignore`
-
-```gitignore
-.env
-*.env
-
-models/
-tmp/
-logs/
-cache/
-
-__pycache__/
-*.pyc
-.DS_Store
-```
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
